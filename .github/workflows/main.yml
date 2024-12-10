@@ -1,9 +1,9 @@
 name: rhena actions
 on: workflow_dispatch
 env:
-    AWS_REGION: us-east-2
-    ECR_REPOSITORY: rhenaapp
-    EKS_CLUSTER: rhena-eks
+    AWS_REGION: us-east-1
+    ECR_REPOSITORY: githubactions-appl
+    EKS_CLUSTER: infra-eks
 
 jobs:
     Testing:
