@@ -119,7 +119,7 @@ jobs:
                 aws-region: ${{ env.AWS_REGION}}
                 cluster-name: ${{ env.EKS_CLUSTER }}
                 # config-files: .github/values/dev.yaml
-                chart-path: helm/rhenacharts
+                chart-path: helm/githubactions-charts
                 namespace: default
                 values: appimage=${{ secrets.REGISTRY }}/${{ env.ECR_REPOSITORY }},apptag=${{ github.run_number }}
-                name: rhena-stack
+                name: githubactions-stack
