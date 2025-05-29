@@ -1,7 +1,7 @@
 name: githubactions actions
 on: workflow_dispatch
 env:
-    AWS_REGION: eu-west-1
+    AWS_REGION: us-east-1
     ECR_REPOSITORY: githubactions-appl
     EKS_CLUSTER: infra-eks
  
@@ -36,8 +36,8 @@ jobs:
                 -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
                 -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
                 -Dsonar.sources=src/
-                -Dsonar.junit.reportsPath=target/surefire-reports/
-                -Dsonar.jacoco.reportsPath=target/jacoco.exec
+                -Dsonar.junit.reportsPath=target/surefire-reports/ 
+                -Dsonar.jacoco.reportsPath=target/jacoco.exec 
                 -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml
                 -Dsonar.java.binaries=target/test-classes/com/visualpathit/account/controllerTest/
  
@@ -81,7 +81,6 @@ jobs:
                 AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
                 AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
                 AWS_DEFAULT_REGION: ${{ env.AWS_REGION }}
-   
             - name: Upload Trivy scan results to GitHub Security tab
               uses: github/codeql-action/upload-sarif@v2
               with:
@@ -107,7 +106,6 @@ jobs:
  
             - name: Print kubeconfig file
               run: cat ~/.kube/config
-             
             - name: Login to ECR
               run: kubectl create secret docker-registry regcred --docker-server=$${{ secrets.REGISTRY }} --docker-username=AWS --docker-password=$(aws ecr get-login-password)
  
