@@ -7,8 +7,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: rhena.ndzenyuyhans.link
-    http:
+  - http:
       paths:
       - path: /
         pathType: Prefix
@@ -16,4 +15,3 @@ spec:
           service:
             name: my-app
             port:
-              number: 8080
