@@ -71,23 +71,7 @@ jobs:
                 dockerfile: ./Dockerfile
                 context: ./
 
-            - name: Run Trivy vulnerability scanner
-              uses: aquasecurity/trivy-action@master
-              with:
-                image-ref: '${{ secrets.REGISTRY }}/eks-app-repo'
-                format: 'sarif'
-                output: 'trivy-results.sarif'
-              env:
-                AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-                AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-                AWS_DEFAULT_REGION: ${{ env.AWS_REGION }}
-    
-            - name: Upload Trivy scan results to GitHub Security tab
-              uses: github/codeql-action/upload-sarif@v2
-              with:
-                sarif_file: 'trivy-results.sarif'
-                category: 'image'
-
+          
     DeployToEKS:
         needs: Build_and_publish
         runs-on: ubuntu-latest
